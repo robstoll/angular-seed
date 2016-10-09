@@ -5,6 +5,11 @@
 1. write this section
 2. update LICENSE file (and section below)
 3. update package.json file (name, version, description, author ...)
+4. Modify .travis.yml (or remove it if you do not use travis)
+    1. Change the path in after_failure so it reflects your repository
+    2. Uncomment the part about gitter in the notifications section and adjust the url in case you use gitter
+5. Modify appveyor.yml (or remove it if you do not use appveyor)
+    1. Uncomment the notifications section and adjust the gitter url in case you use gitter
 
 # Contributing
 

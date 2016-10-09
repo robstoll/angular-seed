@@ -8,9 +8,6 @@ version: "{build}"
 # Test against this version of Node.js
 environment:
   nodejs_version: "Stable"
-  # https://github.com/DefinitelyTyped/tsd#tsdrc
-  # Token has no scope (read-only access to public information)
-  TSD_GITHUB_TOKEN: "9b18c72997769f3867ef2ec470e626d39661795d"
 
 build: off
 
@@ -34,11 +31,11 @@ test_script:
   - ps: "npm --version # PowerShell" # Pass comment to PS for easier debugging
   - npm run tests.all
 
-notifications:
-  - provider: Webhook
-    url: https://webhooks.gitter.im/e/cfd8ce5ddee6f3a0b0c9
-    on_build_success: false
-    on_build_failure: true
-    on_build_status_changed: true
+# notifications:
+  # - provider: Webhook
+  #   url: https://webhooks.gitter.im/e/cfd8ce5ddee6f3a0b0c9
+  #   on_build_success: false
+  #   on_build_failure: true
+  #   on_build_status_changed: true
 
 cache: node_modules
