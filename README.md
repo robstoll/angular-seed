@@ -1,14 +1,21 @@
 # Introduction
 
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/robstoll/angular2-seed.svg?branch=master)](https://travis-ci.org/robstoll/angular2-seed)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/robstoll/angular2-seed?svg=true)](https://ci.appveyor.com/project/robstoll/angular2-seed)
+[![Dependency Status](https://david-dm.org/robstoll/angular2-seed.svg)](https://david-dm.org/robstoll/angular2-seed)
+[![devDependency Status](https://david-dm.org/robstoll/angular2-seed/dev-status.svg)](https://david-dm.org/robstoll/angular2-seed?type=dev)
+
 **TODO**
 
-1. write this section
-2. update LICENSE file (and section below)
-3. update package.json file (name, version, description, author ...)
-4. Modify .travis.yml (or remove it if you do not use travis)
+1. write this section 
+2. update the links of the badges above (to reflect your repository)
+3. update LICENSE file (and section 'License' below)
+4. update package.json file (name, version, description, author ...)
+5. Modify .travis.yml (or remove it if you do not use travis)
     1. Change the path in after_failure so it reflects your repository
     2. Uncomment the part about gitter in the notifications section and adjust the url in case you use gitter
-5. Modify appveyor.yml (or remove it if you do not use appveyor)
+6. Modify appveyor.yml (or remove it if you do not use appveyor)
     1. Uncomment the notifications section and adjust the gitter url in case you use gitter
 
 # Contributing
