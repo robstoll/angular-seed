@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import { join } from 'path';
 import * as slash from 'slash';
 import { argv } from 'yargs';

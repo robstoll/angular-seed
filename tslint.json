@@ -1,5 +1,30 @@
 {
   "extends": "./tools/config/seed.tslint.json",
   "rules": {
+    //overwritten rules
+    "curly": true,
+    "member-ordering": [true, {"order": [
+      "public-static-field",
+      "protected-static-field",
+      "private-static-field",
+      "public-instance-field",
+      "protected-instance-field",
+      "private-instance-field"
+    ]}],
+    "one-line": [true,
+      "check-catch",
+      "check-else",
+      "check-finally",
+      "check-open-brace",
+      "check-whitespace"
+    ],
+    //additional rules
+    "no-conditional-assignment": true,
+    "no-internal-module": true,
+    "no-reference": true,
+    "no-shadowed-variable": true,
+    "no-unsafe-finally": true,
+    "no-unused-new": true,
+    "max-file-line-count": [true, 300]
   }
 }
