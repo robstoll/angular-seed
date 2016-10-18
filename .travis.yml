@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-  - 4
-  - 5
   - stable
 
 sudo: false
@@ -39,6 +37,7 @@ branches:
 
 notifications:
   email: true
+
   # webhooks:
   #   urls: https://webhooks.gitter.im/e/565e4b2fed3b96c1b964
   #   on_success: change  # options: [always|never|change] default: always
@@ -49,4 +48,4 @@ cache:
   directories: node_modules
 
 script:
-  - npm run tests.all
+  - npm run tests.all && npm run build.prod.exp

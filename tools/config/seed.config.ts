@@ -1,9 +1,10 @@
 /* tslint:disable:max-file-line-count */
+import { readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
 import * as slash from 'slash';
 import { argv } from 'yargs';
 
-import { Environments, InjectableDependency } from './seed.config.interfaces';
+import { Environments, ExtendPackages, InjectableDependency } from './seed.config.interfaces';
 
 /************************* DO NOT CHANGE ************************
  *
@@ -342,11 +343,6 @@ export class SeedConfig {
    */
   SYSTEM_CONFIG_DEV: any = {
     defaultJSExtensions: true,
-    packageConfigPaths: [
-      `/node_modules/*/package.json`,
-      `/node_modules/**/package.json`,
-      `/node_modules/@angular/*/package.json`
-    ],
     paths: {
       [this.BOOTSTRAP_MODULE]: `${this.APP_BASE}${this.BOOTSTRAP_MODULE}`,
       '@angular/common': 'node_modules/@angular/common/bundles/common.umd.js',
@@ -388,61 +384,62 @@ export class SeedConfig {
    * The system builder configuration of the application.
    * @type {any}
    */
-  SYSTEM_BUILDER_CONFIG: any = {
-    defaultJSExtensions: true,
-    base: this.PROJECT_ROOT,
-    packageConfigPaths: [
-      join('node_modules', '*', 'package.json'),
-      join('node_modules', '@angular', '*', 'package.json')
-    ],
-    paths: {
-      [join(this.TMP_DIR, this.BOOTSTRAP_DIR, '*')]: `${this.TMP_DIR}/${this.BOOTSTRAP_DIR}/*`,
-      'node_modules/*': 'node_modules/*',
-      '*': 'node_modules/*'
-    },
-    packages: {
-      '@angular/common': {
-        main: 'index.js',
-        defaultExtension: 'js'
+  get SYSTEM_BUILDER_CONFIG(): any {
+    return prepareBuilderConfig({
+      defaultJSExtensions: true,
+      base: this.PROJECT_ROOT,
+      packageConfigPaths: [
+        join('node_modules', '*', 'package.json'),
+        join('node_modules', '@angular', '*', 'package.json')
+      ],
+      paths: {
+        'node_modules/*': 'node_modules/*',
+        '*': 'node_modules/*'
       },
-      '@angular/compiler': {
-        main: 'index.js',
-        defaultExtension: 'js'
-      },
-      '@angular/core/testing': {
-        main: 'index.js',
-        defaultExtension: 'js'
-      },
-      '@angular/core': {
-        main: 'index.js',
-        defaultExtension: 'js'
-      },
-      '@angular/forms': {
-        main: 'index.js',
-        defaultExtension: 'js'
-      },
-      '@angular/http': {
-        main: 'index.js',
-        defaultExtension: 'js'
-      },
-      '@angular/platform-browser': {
-        main: 'index.js',
-        defaultExtension: 'js'
-      },
-      '@angular/platform-browser-dynamic': {
-        main: 'index.js',
-        defaultExtension: 'js'
-      },
-      '@angular/router': {
-        main: 'index.js',
-        defaultExtension: 'js'
-      },
-      'rxjs': {
-        main: 'Rx.js',
-        defaultExtension: 'js'
+      packages: {
+        '@angular/common': {
+          main: 'index.js',
+          defaultExtension: 'js'
+        },
+        '@angular/compiler': {
+          main: 'index.js',
+          defaultExtension: 'js'
+        },
+        '@angular/core/testing': {
+          main: 'index.js',
+          defaultExtension: 'js'
+        },
+        '@angular/core': {
+          main: 'index.js',
+          defaultExtension: 'js'
+        },
+        '@angular/forms': {
+          main: 'index.js',
+          defaultExtension: 'js'
+        },
+        '@angular/http': {
+          main: 'index.js',
+          defaultExtension: 'js'
+        },
+        '@angular/platform-browser': {
+          main: 'index.js',
+          defaultExtension: 'js'
+        },
+        '@angular/platform-browser-dynamic': {
+          main: 'index.js',
+          defaultExtension: 'js'
+        },
+        '@angular/router': {
+          main: 'index.js',
+          defaultExtension: 'js'
+        },
+        'rxjs': {
+          main: 'Rx.js',
+          defaultExtension: 'js'
+        }
       }
-    }
-  };
+    }, join(this.PROJECT_ROOT, this.APP_SRC), this.TMP_DIR);
+  }
 
   /**
    * The Autoprefixer configuration for the application.
@@ -548,6 +545,29 @@ export class SeedConfig {
     return this.ENV === ENVIRONMENTS.PRODUCTION && this.ENABLE_SCSS ? 'scss' : 'css';
   }
 
+  addPackageBundles(pack: ExtendPackages) {
+
+    if (pack.path) {
+      this.SYSTEM_CONFIG_DEV.paths[pack.name] = pack.path;
+    }
+
+    if (pack.packageMeta) {
+      this.SYSTEM_BUILDER_CONFIG.packages[pack.name] = pack.packageMeta;
+    }
+  }
+
+}
+
+/**
+ * Used only when developing multiple applications with shared codebase.
+ * We need to specify the paths for each individual application otherwise
+ * SystemJS Builder cannot bundle the target app on Windows.
+ */
+function prepareBuilderConfig(config: any, srcPath: string, tmpPath: string) {
+  readdirSync(srcPath).filter(f =>
+    lstatSync(join(srcPath, f)).isDirectory()).forEach(f =>
+    config.paths[join(tmpPath, f, '*')] = `${tmpPath}/${f}/*`);
+  return config;
 }
 
 /**
