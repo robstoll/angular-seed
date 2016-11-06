@@ -1,9 +1,9 @@
 {
-  "name": "angular2-seed",
+  "name": "angular-seed",
   "version": "0.0.0",
   "description": "High-quality, modular starter (seed) project for Angular 2 apps with statically typed build and AoT",
   "repository": {
-    "url": "https://github.com/robstoll/angular2-seed"
+    "url": "https://github.com/robstoll/angular-seed"
   },
   "scripts": {
     "build.dev": "gulp build.dev --color --config-env dev",
