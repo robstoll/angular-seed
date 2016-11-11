@@ -20,6 +20,45 @@ This is a seed project for angular based projects. It is itself based on [mgeche
 6. Modify appveyor.yml (or remove it if you do not use appveyor)
     1. Uncomment the notifications section and adjust the gitter url in case you use gitter
 
+# Installation
+
+You can set up a new project with the seed as follows
+
+```markdown
+# clone the angular-seed into directory called yourProjectName (get only last commit, not the whole history)
+git clone --depth 1 https://github.com/robstoll/angular-seed yourProjectName
+cd yourProjectName
+
+# exchange the origin with your remote repository
+git remote remove origin
+git remote add origin https://github.com/yourName/yourProjectName
+
+# we are using a branch called seed-last-update and a remote called 'seed'
+# to keep track on which commit of the angular-seed this project is based on
+# in order to perform updates of angular-seed later on
+git checkout -b seed-last-update
+git remote add --no-tags --track master seed https://github.com/robstoll/angular-seed
+git fetch seed --unshallow
+git push -u origin seed-last-update
+
+# since master should not have a parent we delete it and re-create it as orphan branch
+git branch -d master
+git checkout --orphan master
+
+# make your first commit and push to orign (set up master tracking origin/master)
+git commit -m "initial commit based on robstoll's angular-seed"
+git push -u origin master
+```
+
+install the node_modules
+
+```markdown
+# either install the project's dependencies with yarn (via Yarn, https://yarnpkg.com)
+yarn install  
+# or with npm (which is most probably slower)
+npm install
+```
+
 # Contributing
 
 Please see the [CONTRIBUTING](.github/CONTRIBUTING.md) file for guidelines.
