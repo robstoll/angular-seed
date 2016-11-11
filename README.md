@@ -99,7 +99,7 @@ git branch -D seed-update-commit
 Please see the [CONTRIBUTING](.github/CONTRIBUTING.md) file for guidelines.
 
 
-# Based on robstoll's angular2-seed
+# Based on robstoll's angular-seed
 
 This project is/was using [robstoll's angular-seed](https://github.com/robstoll/angular-seed) --
 which in turn is based on [mgechev's angular-seed](https://github.com/mgechev/angular-seed/) -- to start off.
