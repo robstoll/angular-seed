@@ -27,16 +27,16 @@ This is a seed project for angular based projects. It is itself based on [mgeche
 You can set up a new project with the seed as follows
 
 ```bash
-# clone the angular-seed into directory called yourProjectName (get only last commit, not the whole history)
+# clone the angular-seed into a directory called yourProjectName (get only last commit, not the whole history)
 git clone --depth 1 https://github.com/robstoll/angular-seed yourProjectName
 cd yourProjectName
 
-# exchange the origin with your remote repository
+# exchange the remote called origin with your remote repository
 git remote remove origin
 git remote add origin https://github.com/yourName/yourProjectName
 
 # we are using a branch called seed-last-update and a remote called 'seed' to keep track on which commit 
-# (of angular-seed) this project is based on in order to perform updates of angular-seed later on
+# (of angular-seed) this project is based on in order to get updates of angular-seed later on
 git checkout -b seed-last-update
 git remote add --no-tags --track master seed https://github.com/robstoll/angular-seed
 git fetch seed --unshallow
@@ -67,7 +67,7 @@ If you want to apply an update (one or several commits) of angular-seed to yourP
 ```bash
 # get the latest version 
 git fetch seed
-# have a look at what has been changed since your last update (copy the first and last commit hash)
+# have a look at what has changed since your last update (copy the first and last commit hash)
 git checkout seed-last-update
 git log ..seed/master
 
