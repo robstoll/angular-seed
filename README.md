@@ -68,10 +68,10 @@ If you want to apply an update (one or several commits) of angular-seed to yourP
 # get the latest version 
 git fetch seed
 # have a look at what has been changed since your last update (copy the first and last commit hash)
+git checkout seed-last-update
 git log ..seed/master
 
 # merge all changes into a new branch and squash it to one commit 
-git checkout seed-last-update
 git checkout -b seed-update-commit
 git merge --squash seed/master
 
