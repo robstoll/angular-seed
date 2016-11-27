@@ -43,34 +43,32 @@ If you want to apply an update (one or several commits) of [angular-seed](https:
 to your project then you can proceed as follows:
 
 ```bash
-# get the latest version 
+# get the latest version of the seed
 git fetch seed
-# have a look at what has changed since your last update (copy the first and last commit hash)
-git checkout seed-last-update
-git log ..seed/master
 
-# merge all changes into a new branch and squash it to one commit 
-git checkout -b seed-update-commit
+# squash all commits from seed/master which were made since seed-last-update into one commit 
+# and merge it into a new branch called seed-update-commit 
+git checkout -b seed-update-commit seed-last-update
 git merge --squash seed/master
 
-# Commit the changes and replace lastCommitHash and firstCommitHash with the actual hashes 
-$ git commit -m "Merge robstoll/angular-seed/master
-> Squashed commits starting from lastCommitHash to firstCommitHash"
-
-# move the seed-last-update branch forward
-git checkout seed-last-update
-git reset --hard seed/master
-git push
+# Commit the changes -- you might want to replace the title with the following
+# Squashed last changes from robstoll/angular-seed
+git commit 
 
 # cherry-pick the commit into master
 git checkout master
 git cherry-pick seed-update-commit
 git push
 
+# move the seed-last-update branch forward
+git checkout seed-last-update
+git reset --hard seed/master
+git push
+
 # delete the seed-update-commit branch 
 git branch -D seed-update-commit
+git checkout master
 ```
-
 
 # Contributing to angular-seed
 
