@@ -25,6 +25,13 @@
     "no-shadowed-variable": true,
     "no-unsafe-finally": true,
     "no-unused-new": true,
-    "max-file-line-count": [true, 300]
+    "max-file-line-count": [true, 300],
+    "whitespace": [true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator"
+    ]
   }
 }
