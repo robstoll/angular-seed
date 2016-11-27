@@ -14,9 +14,9 @@ const plugins = <any>gulpLoadPlugins();
  */
 export function watch(taskname: string) {
   return function () {
-    let paths:string[]=[
-      join(Config.APP_SRC,'**')
-    ].concat(Config.TEMP_FILES.map((p) => { return '!'+p; }));
+    let paths:string[] = [
+      join(Config.APP_SRC, '**')
+    ].concat(Config.TEMP_FILES.map((p) => { return '!' + p; }));
 
     plugins.watch(paths, (e: any) => {
       changeFileManager.addFile(e.path);
